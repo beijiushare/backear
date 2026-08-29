@@ -1,7 +1,7 @@
 name: Release Build
 
 on:
-  workflow_dispatch:          # 仅手动触发
+  workflow_dispatch:
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
         run: ./gradlew assembleRelease
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # 👈 只需要改这一行
         with:
           name: app-release
           path: app/build/outputs/apk/release/*.apk
