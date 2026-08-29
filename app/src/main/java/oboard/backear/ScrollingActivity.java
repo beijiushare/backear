@@ -101,6 +101,13 @@ public class ScrollingActivity extends AppCompatActivity implements Runnable {
     @Override
     public void run() {
 
+        // 添加权限检查
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+            != PackageManager.PERMISSION_GRANTED) {
+            // 没有录音权限，直接结束线程
+            return;
+        }
+
         //录音对象
         audioRecord = new AudioRecord(inputSource, frequency, channelConfiguration, audioEncoding, recBufSize);
         //setOutSpeak();
